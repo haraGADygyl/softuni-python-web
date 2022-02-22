@@ -4,7 +4,7 @@ from exam_prep.web.views import show_index, create_expense, edit_expense, delete
     delete_profile, create_profile
 
 urlpatterns = (
-    path('', show_index, name = 'show index'),
+    path('', show_index, name='show index'),
 
     path('create/', create_expense, name='create expense'),
     path('edit/<int:pk>/', edit_expense, name='edit expense'),

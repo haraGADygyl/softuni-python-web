@@ -7,12 +7,22 @@ class CreateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = '__all__'
+        labels = {
+            'first_name': 'First Name',
+            'last_name': 'Last name',
+            'image_url': 'Image URL',
+        }
 
 
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = '__all__'
+        labels = {
+            'first_name': 'First Name',
+            'last_name': 'Last name',
+            'image_url': 'Image URL',
+        }
 
 
 class DeleteProfileForm(forms.ModelForm):
@@ -29,6 +39,11 @@ class DeleteProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = '__all__'
+        labels = {
+            'first_name': 'First Name',
+            'last_name': 'Last name',
+            'image_url': 'Image URL',
+        }
 
 
 class CreateBookForm(forms.ModelForm):

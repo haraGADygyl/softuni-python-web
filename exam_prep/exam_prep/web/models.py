@@ -3,7 +3,7 @@ from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
 from django.utils.deconstruct import deconstructible
 
-VALIDATE_ONLY_LETTERS_EXCEPTION_MESSAGE = 'Ensure this value contains only letters.'
+VALIDATE_ONLY_LETTERS_EXCEPTION_MESSAGE = "Ensure this value contains only letters."
 
 
 # Create your models here.
@@ -27,7 +27,7 @@ class MaxFileSizeInMbValidator:
         return value * 1024 * 1024
 
     def __get_exception_message(self):
-        return f'Max file size is {self.max_size:.2f} MB'
+        return f"Max file size is {self.max_size:.2f} MB"
 
 
 class Profile(models.Model):
@@ -41,14 +41,14 @@ class Profile(models.Model):
     BUDGET_MIN_VALUE = 0
 
     IMAGE_MAX_SIZE_IN_MB = 5
-    IMAGE_UPLOAD_TO_DIR = 'profiles/'
+    IMAGE_UPLOAD_TO_DIR = "profiles/"
 
     first_name = models.CharField(
         max_length=FIRST_NAME_MAX_LEN,
         validators=(
             MinLengthValidator(FIRST_NAME_MIN_LEN),
             validate_only_letters,
-        )
+        ),
     )
 
     last_name = models.CharField(
@@ -70,14 +70,12 @@ class Profile(models.Model):
         upload_to=IMAGE_UPLOAD_TO_DIR,
         null=True,
         blank=True,
-        validators=(
-            MaxFileSizeInMbValidator(IMAGE_MAX_SIZE_IN_MB),
-        ),
+        validators=(MaxFileSizeInMbValidator(IMAGE_MAX_SIZE_IN_MB),),
     )
 
     @property
     def full_name(self):
-        return f'{self.first_name} {self.last_name}'
+        return f"{self.first_name} {self.last_name}"
 
 
 class Expense(models.Model):
@@ -97,4 +95,7 @@ class Expense(models.Model):
     )
 
     class Meta:
-        ordering = ('title', 'price', )
+        ordering = (
+            "title",
+            "price",
+        )

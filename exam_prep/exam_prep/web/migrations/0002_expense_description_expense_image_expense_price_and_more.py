@@ -4,32 +4,31 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('web', '0001_initial'),
+        ("web", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='expense',
-            name='description',
+            model_name="expense",
+            name="description",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='expense',
-            name='image',
+            model_name="expense",
+            name="image",
             field=models.URLField(default=1),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='expense',
-            name='price',
+            model_name="expense",
+            name="price",
             field=models.FloatField(default=1),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='expense',
-            name='title',
+            model_name="expense",
+            name="title",
             field=models.CharField(default=1, max_length=30),
             preserve_default=False,
         ),

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
 body {
     background: #f6f5f5;
     font-family: 'Lato', sans-serif;
@@ -72,8 +73,8 @@ textarea {
 
 input[type=file],
 .form-file {
-  display: block;
-  width: 100%;
+    display: block;
+    width: 100%;
 }
 
 input[type=submit],

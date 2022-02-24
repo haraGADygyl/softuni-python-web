@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from exam_prep.web.forms import CreateProfileFrom, EditProfileFrom, DeleteProfileFrom, CreateExpenseFrom, \
-    EditExpenseFrom, DeleteExpenseFrom
+from exam_prep.web.forms import (
+    CreateProfileFrom,
+    EditProfileFrom,
+    DeleteProfileFrom,
+    CreateExpenseFrom,
+    EditExpenseFrom,
+    DeleteExpenseFrom,
+)
 from exam_prep.web.models import Profile, Expense
 
 
@@ -16,71 +22,66 @@ def get_profile():
 def show_index(request):
     profile = get_profile()
     if not profile:
-        return redirect('create profile')
+        return redirect("create profile")
 
     expenses = Expense.objects.all()
     budget_left = profile.budget - sum(e.price for e in expenses)
 
-    context = {
-        'profile': profile,
-        'expenses': expenses,
-        'budget_left': budget_left
-    }
+    context = {"profile": profile, "expenses": expenses, "budget_left": budget_left}
 
-    return render(request, 'home-with-profile.html', context)
+    return render(request, "home-with-profile.html", context)
 
 
 def create_expense(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = CreateExpenseFrom(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('show index')
-
+            return redirect("show index")
     else:
         form = CreateExpenseFrom()
 
     context = {
-        'form': form,
+        "form": form,
     }
 
-    return render(request, 'expense-create.html', context)
+    return render(request, "expense-create.html", context)
 
 
 def edit_expense(request, pk):
     expense = Expense.objects.get(pk=pk)
-    if request.method == 'POST':
+    if request.method == "POST":
         form = EditExpenseFrom(request.POST, instance=expense)
         if form.is_valid():
             form.save()
-            return redirect('show index')
+            return redirect("show index")
 
     else:
         form = EditExpenseFrom(instance=expense)
 
     context = {
-        'form': form,
-        'expense': expense,
+        "form": form,
+        "expense": expense,
     }
-    return render(request, 'expense-edit.html', context)
+    return render(request, "expense-edit.html", context)
 
 
 def delete_expense(request, pk):
     expense = Expense.objects.get(pk=pk)
-    if request.method == 'POST':
+    if request.method == "POST":
         form = DeleteExpenseFrom(request.POST, instance=expense)
         if form.is_valid():
             form.save()
-            return redirect('show index')
+            return redirect("show index")
 
     else:
         form = DeleteExpenseFrom(instance=expense)
 
     context = {
-        'form': form,
-        'expense': expense,
+        "form": form,
+        "expense": expense,
     }
-    return render(request, 'expense-delete.html', context)
+    return render(request, "expense-delete.html", context)
 
 
 def show_profile(request):
@@ -91,60 +92,60 @@ def show_profile(request):
     budget_left = profile.budget - sum(e.price for e in expenses)
 
     context = {
-        'profile': profile,
-        'expenses_count': expenses_count,
-        'budget_left': budget_left,
+        "profile": profile,
+        "expenses_count": expenses_count,
+        "budget_left": budget_left,
     }
 
-    return render(request, 'profile.html', context)
+    return render(request, "profile.html", context)
 
 
 def create_profile(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = CreateProfileFrom(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('show index')
+            return redirect("show index")
     else:
         form = CreateProfileFrom()
 
     context = {
-        'form': form,
+        "form": form,
     }
 
-    return render(request, 'home-no-profile.html', context)
+    return render(request, "home-no-profile.html", context)
 
 
 def edit_profile(request):
     profile = get_profile()
-    if request.method == 'POST':
+    if request.method == "POST":
         form = EditProfileFrom(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('show index')
+            return redirect("show index")
     else:
         form = EditProfileFrom(instance=profile)
 
     context = {
-        'form': form,
-        'no_profile': True,
+        "form": form,
+        "no_profile": True,
     }
 
-    return render(request, 'profile-edit.html', context)
+    return render(request, "profile-edit.html", context)
 
 
 def delete_profile(request):
     profile = get_profile()
-    if request.method == 'POST':
+    if request.method == "POST":
         form = DeleteProfileFrom(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('show index')
+            return redirect("show index")
     else:
         form = DeleteProfileFrom(instance=profile)
 
     context = {
-        'form': form,
+        "form": form,
     }
 
-    return render(request, 'profile-delete.html', context)
+    return render(request, "profile-delete.html", context)

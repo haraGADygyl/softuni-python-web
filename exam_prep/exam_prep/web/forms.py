@@ -8,24 +8,24 @@ from exam_prep.web.models import Profile, Expense
 class CreateProfileFrom(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('budget', 'first_name', 'last_name', 'image')
+        fields = ("budget", "first_name", "last_name", "image")
 
         labels = {
-            'first_name': 'First Name',
-            'last_name': 'Last Name',
-            'image': 'Profile Image',
+            "first_name": "First Name",
+            "last_name": "Last Name",
+            "image": "Profile Image",
         }
 
 
 class EditProfileFrom(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('budget', 'first_name', 'last_name', 'image')
+        fields = ("budget", "first_name", "last_name", "image")
 
         labels = {
-            'first_name': 'First Name',
-            'last_name': 'Last Name',
-            'image': 'Profile Image',
+            "first_name": "First Name",
+            "last_name": "Last Name",
+            "image": "Profile Image",
         }
 
 
@@ -45,20 +45,20 @@ class DeleteProfileFrom(forms.ModelForm):
 class CreateExpenseFrom(forms.ModelForm):
     class Meta:
         model = Expense
-        fields = ('title', 'description', 'image', 'price')
+        fields = ("title", "description", "image", "price")
 
         labels = {
-            'image': 'Link to Image',
+            "image": "Link to Image",
         }
 
 
 class EditExpenseFrom(forms.ModelForm):
     class Meta:
         model = Expense
-        fields = ('title', 'description', 'image', 'price')
+        fields = ("title", "description", "image", "price")
 
         labels = {
-            'image': 'Link to Image',
+            "image": "Link to Image",
         }
 
 
@@ -66,7 +66,7 @@ class DeleteExpenseFrom(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for _, field in self.fields.items():
-            field.widget.attrs['readonly'] = 'readonly'
+            field.widget.attrs["readonly"] = "readonly"
 
     def save(self, commit=True):
         self.instance.delete()
@@ -74,8 +74,8 @@ class DeleteExpenseFrom(forms.ModelForm):
 
     class Meta:
         model = Expense
-        fields = ('title', 'description', 'image', 'price')
+        fields = ("title", "description", "image", "price")
 
         labels = {
-            'image': 'Link to Image',
+            "image": "Link to Image",
         }

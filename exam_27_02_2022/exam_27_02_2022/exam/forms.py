@@ -24,6 +24,12 @@ class CreateAlbumForm(forms.ModelForm):
     class Meta:
         model = Album
         fields = '__all__'
+
+        widgets = {
+            'album_name': forms.TextInput(attrs={'placeholder': 'Name'}),
+            'image_url': forms.Textarea(attrs={'placeholder': 'Enter image URL here'}),
+        }
+
         labels = {
             'album_name': 'Album Name',
             'image_url': 'Image URL',
